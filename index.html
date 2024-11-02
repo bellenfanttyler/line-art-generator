@@ -13,7 +13,7 @@
 </head>
 <body>
   <div class="container py-5">
-    <h1 class="text-center mb-4">Studio Line Art Generator</h1>
+    <h1 class="text-center mb-4">Line Art Generator Studio</h1>
 
     <!-- Main Row for Layout -->
     <div class="row">
@@ -37,7 +37,7 @@
       <!-- Controls for Line Art Parameters (Right Side) -->
       <div class="col-md-5">
         <div class="upload-section mb-4 p-4">
-          <p class="mb-3">Upload an image to create a beautiful line art representation.</p>
+          <p class="mb-3">Upload a base image for line art representation.</p>
           <input type="file" class="form-control btn-upload" id="imageLoader" accept="image/*">
           <small class="form-text text-muted">Supported formats: JPG, PNG.</small>
         </div>
@@ -49,7 +49,7 @@
             <input type="range" class="form-range" min="1" max="20" value="5" id="spacingSlider" style="accent-color: #1C60A7;">
           </div>
           <div class="mb-3">
-            <label for="orientationSelect" class="form-label">Orientation:</label>
+            <label for="orientationSelect" class="form-label">Line Orientation:</label>
             <select class="form-select" id="orientationSelect">
               <option value="vertical" selected>Vertical</option>
               <option value="horizontal">Horizontal</option>
@@ -65,7 +65,7 @@
           <div class="mb-3">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="noBarsCheckbox">
-              <label class="form-check-label" for="noBarsCheckbox">No Bars</label>
+              <label class="form-check-label" for="noBarsCheckbox">Show Small Bars</label>
             </div>
           </div>
         </div>
