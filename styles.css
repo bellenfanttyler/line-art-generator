@@ -1,0 +1,60 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F4F8FB;
+    color: #333333;
+  }
+  
+  .container {
+    max-width: 900px;
+  }
+  
+  h1, h3 {
+    font-weight: 700;
+    color: #0F3A66;
+  }
+  
+  .upload-section {
+    background: #E1E8ED;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-upload {
+    background-color: #1C60A7;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-upload:hover {
+    background-color: #144B85;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .canvas-container {
+    position: relative;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #E1E8ED;
+    border-radius: 8px;
+  }
+  
+  .canvas-container canvas {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .spinner-border {
+    position: absolute;
+  }
+  
