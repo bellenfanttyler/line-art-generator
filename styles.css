@@ -1,60 +1,135 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #F4F8FB;
-    color: #333333;
-  }
-  
-  .container {
-    max-width: 900px;
-  }
-  
-  h1, h3 {
-    font-weight: 700;
-    color: #0F3A66;
-  }
-  
-  .upload-section {
-    background: #E1E8ED;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-upload {
-    background-color: #1C60A7;
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-upload:hover {
-    background-color: #144B85;
-  }
-  
-  .card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .canvas-container {
-    position: relative;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFFFFF;
-    border: 1px solid #E1E8ED;
-    border-radius: 8px;
-  }
-  
-  .canvas-container canvas {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
-  .spinner-border {
-    position: absolute;
-  }
-  
+  font-family: 'Roboto', sans-serif;
+  background-color: #F4F8FB;
+  color: #333333;
+}
+
+.container {
+  max-width: 900px;
+}
+
+h1, h3 {
+  font-weight: 700;
+  color: #0F3A66;
+}
+
+.upload-section {
+  background: #E1E8ED;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px; /* Add spacing for better separation from settings */
+}
+
+.btn-upload {
+  background-color: #1C60A7;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-upload:hover {
+  background-color: #144B85;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+  position: relative;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E8ED;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Add spacing between sections */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.canvas-container canvas {
+  max-width: 100%;
+  max-height: 100%;
+  display: none; /* Hide both canvases initially */
+}
+
+#resultCanvas.active, #originalCanvas.active {
+  display: block; /* Display only the active canvas */
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the toggle switch */
+  margin-top: 10px;
+  margin-bottom: 20px; /* Spacing from below elements */
+}
+
+.toggle-switch input[type="checkbox"] {
+  appearance: none;
+  width: 50px;
+  height: 25px;
+  background: #ccc;
+  border-radius: 25px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.toggle-switch input[type="checkbox"]:checked {
+  background: #1C60A7;
+}
+
+.toggle-switch input[type="checkbox"]::after {
+  content: '';
+  width: 21px;
+  height: 21px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked::after {
+  left: 27px;
+}
+
+.toggle-switch label {
+  margin-left: 10px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+}
+
+/* Updated Line Spacing Slider for Better Visibility */
+#spacingSlider {
+  accent-color: #1C60A7;
+  height: 8px; /* Make the slider thicker */
+  border-radius: 5px;
+  background: #E1E8ED; /* Add background color around the slider to make it stand out */
+  padding: 5px;
+}
+
+#spacingSlider::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  background: #1C60A7;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#spacingSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #1C60A7;
+  border-radius: 50%;
+  cursor: pointer;
+}
