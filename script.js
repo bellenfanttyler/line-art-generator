@@ -19,7 +19,7 @@ document.getElementById("imageLoader").addEventListener("change", function (even
       resultCanvas.height = img.height;
 
       // Set the max value for the line spacing slider to the longest edge / 4
-      const maxSpacing = Math.floor(Math.max(img.width, img.height) / 4);
+      const maxSpacing = Math.floor(Math.max(img.width, img.height) / 10);
       document.getElementById("spacingSlider").max = maxSpacing;
 
       // Draw the original image on the originalCanvas
