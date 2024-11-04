@@ -133,3 +133,18 @@ h1, h3 {
   border-radius: 50%;
   cursor: pointer;
 }
+
+#downloadButton {
+  background-color: #1C60A7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Adjust this value as needed */
+}
+
+#downloadButton:hover {
+  background-color: #144B85;
+}

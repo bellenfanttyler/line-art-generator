@@ -139,6 +139,14 @@ document.getElementById("spacingSlider").addEventListener("input", () => {
   updateLineArt();
 });
 
+document.getElementById("downloadButton").addEventListener("click", function () {
+  const canvas = document.getElementById("resultCanvas");
+  const link = document.createElement("a");
+  link.href = canvas.toDataURL("image/png");
+  link.download = "line_art.png";
+  link.click();
+});
+
 document.getElementById("orientationSelect").addEventListener("change", updateLineArt);
 document.getElementById("fillColorSelect").addEventListener("change", updateLineArt);
 document.getElementById("noBarsCheckbox").addEventListener("change", updateLineArt);
