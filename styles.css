@@ -149,4 +149,29 @@ h1, h3 {
   background-color: #144B85;
 }
 
+#barThicknessSliderContainer {
+  margin-top: 15px;
+}
+
+#barThicknessSlider {
+  accent-color: #1C60A7;
+  height: 8px; /* Adjust thickness for visibility */
+  border-radius: 5px;
+  background: #E1E8ED;
+  padding: 5px;
+}
+
+#barThicknessSlider::-webkit-slider-thumb,
+#barThicknessSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #1C60A7;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#barThicknessValue {
+  font-weight: 600;
+  color: #0F3A66;
+}
 

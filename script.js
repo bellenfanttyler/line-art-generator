@@ -67,29 +67,31 @@ function calculateMinColorWidth(spacing) {
 function createLineArt(imageData, spacing, orientation = "vertical", fillValue = "black", noBars = false) {
   const width = imageData.width;
   const height = imageData.height;
-  
   const output = new Uint8ClampedArray(width * height * 4);
   const backgroundColor = fillValue === "white" ? 0 : 255;
+  const lineColor = fillValue === "black" ? 0 : 255;
+
+  // Get the minimum bar thickness value from the slider
+  const minBarThickness = parseInt(document.getElementById("barThicknessSlider").value, 10);
+
+  // Initialize output array with the background color
   for (let i = 0; i < output.length; i += 4) {
     output[i] = output[i + 1] = output[i + 2] = backgroundColor;
     output[i + 3] = 255;
   }
-
-  const { minColorWidth } = calculateMinColorWidth(spacing);
-  const lineColor = fillValue === "black" ? 0 : 255;
 
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const index = (y * width + x) * 4;
       const grayValue = imageData.data[index];
 
+      // Determine if we should draw a bar based on spacing and orientation
       if ((orientation === "vertical" && x % spacing === 0) || (orientation === "horizontal" && y % spacing === 0)) {
         const colorWidth = Math.floor((1 - grayValue / 255) * (spacing / 2)) + 1;
 
-        for (let n = 0; n < colorWidth; n++) {
-          if (noBars && colorWidth <= minColorWidth) {
-            output[index] = output[index + 1] = output[index + 2] = backgroundColor;
-          } else {
+        // Only render bars that meet the minimum thickness requirement
+        if (colorWidth >= minBarThickness || !noBars) {
+          for (let n = 0; n < colorWidth; n++) {
             if (orientation === "vertical") {
               const leftIndex = ((y * width + (x - n)) * 4);
               const rightIndex = ((y * width + (x + n)) * 4);
@@ -109,6 +111,7 @@ function createLineArt(imageData, spacing, orientation = "vertical", fillValue =
 
   return new ImageData(output, width, height);
 }
+
 
 // Update the line art canvas with current settings
 function updateLineArt() {
@@ -139,6 +142,11 @@ document.getElementById("spacingSlider").addEventListener("input", () => {
   updateLineArt();
 });
 
+// Update the canvas whenever the bar thickness slider changes
+document.getElementById("barThicknessSlider").addEventListener("input", () => {
+  updateLineArt();
+});
+
 document.getElementById("downloadButton").addEventListener("click", function () {
   const canvas = document.getElementById("resultCanvas");
   const link = document.createElement("a");
@@ -150,3 +158,37 @@ document.getElementById("downloadButton").addEventListener("click", function () 
 document.getElementById("orientationSelect").addEventListener("change", updateLineArt);
 document.getElementById("fillColorSelect").addEventListener("change", updateLineArt);
 document.getElementById("noBarsCheckbox").addEventListener("change", updateLineArt);
+
+document.addEventListener("DOMContentLoaded", function () {
+  const noBarsCheckbox = document.getElementById("noBarsCheckbox");
+  const barThicknessSliderContainer = document.getElementById("barThicknessSliderContainer");
+  const barThicknessSlider = document.getElementById("barThicknessSlider");
+  const barThicknessValue = document.getElementById("barThicknessValue");
+
+  // Function to dynamically set the maximum thickness value for the slider
+  function setBarThicknessMax() {
+    const maxThickness = calculateMaxThickness(); // Call your existing or custom function
+    barThicknessSlider.max = maxThickness;
+  }
+
+  // Placeholder function to determine max bar thickness; replace with actual implementation
+  function calculateMaxThickness() {
+    // Placeholder value; replace with actual calculation logic
+    return 10;
+  }
+
+  // Show/hide the thickness slider based on the "Hide Thin Bars" checkbox
+  noBarsCheckbox.addEventListener("change", function () {
+    if (this.checked) {
+      barThicknessSliderContainer.style.display = "block"; // Show the slider container
+      setBarThicknessMax(); // Set max value when the checkbox is checked
+    } else {
+      barThicknessSliderContainer.style.display = "none"; // Hide the slider container
+    }
+  });
+
+  // Update the displayed value of the thickness slider in real-time
+  barThicknessSlider.addEventListener("input", function () {
+    barThicknessValue.textContent = this.value;
+  });
+});
