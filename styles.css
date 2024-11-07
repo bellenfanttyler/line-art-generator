@@ -175,3 +175,24 @@ h1, h3 {
   color: #0F3A66;
 }
 
+#seedSlider {
+  accent-color: #1C60A7;
+  height: 8px; /* Adjust thickness for better visibility */
+  border-radius: 5px;
+  background: #E1E8ED;
+  padding: 5px;
+}
+
+#seedSlider::-webkit-slider-thumb,
+#seedSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #1C60A7;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#seedValue {
+  font-weight: 600;
+  color: #0F3A66;
+}

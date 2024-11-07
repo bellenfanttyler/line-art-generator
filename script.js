@@ -74,6 +74,9 @@ function createLineArt(imageData, spacing, orientation = "vertical", fillValue =
   // Get the minimum bar thickness value from the slider
   const minBarThickness = parseInt(document.getElementById("barThicknessSlider").value, 10);
 
+  // Get the seed value for line offset
+  const seed = parseInt(document.getElementById("seedSlider").value, 10);
+
   // Initialize output array with the background color
   for (let i = 0; i < output.length; i += 4) {
     output[i] = output[i + 1] = output[i + 2] = backgroundColor;
@@ -85,8 +88,12 @@ function createLineArt(imageData, spacing, orientation = "vertical", fillValue =
       const index = (y * width + x) * 4;
       const grayValue = imageData.data[index];
 
-      // Determine if we should draw a bar based on spacing and orientation
-      if ((orientation === "vertical" && x % spacing === 0) || (orientation === "horizontal" && y % spacing === 0)) {
+      // Apply the seed offset to determine where to start drawing lines
+      const shouldDrawBar = (orientation === "vertical" && (x + seed) % spacing === 0) ||
+                            (orientation === "horizontal" && (y + seed) % spacing === 0);
+
+      // Only draw if the bar meets the seed condition and thickness requirements
+      if (shouldDrawBar) {
         const colorWidth = Math.floor((1 - grayValue / 255) * (spacing / 2)) + 1;
 
         // Only render bars that meet the minimum thickness requirement
@@ -111,6 +118,8 @@ function createLineArt(imageData, spacing, orientation = "vertical", fillValue =
 
   return new ImageData(output, width, height);
 }
+
+
 
 
 // Update the line art canvas with current settings
@@ -142,9 +151,32 @@ document.getElementById("spacingSlider").addEventListener("input", () => {
   updateLineArt();
 });
 
+
+
 // Update the canvas whenever the bar thickness slider changes
 document.getElementById("barThicknessSlider").addEventListener("input", () => {
   updateLineArt();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Elements
+  const spacingSlider = document.getElementById("spacingSlider");
+  const seedSlider = document.getElementById("seedSlider");
+  const seedValue = document.getElementById("seedValue");
+
+  // Update seedSlider max when spacingSlider changes
+  spacingSlider.addEventListener("input", () => {
+    const spacing = parseInt(spacingSlider.value, 10);
+    seedSlider.max = spacing; // Set seed max to match spacing
+    document.getElementById("spacingValue").textContent = spacing;
+    updateLineArt();
+  });
+
+  // Update canvas when seed slider changes
+  seedSlider.addEventListener("input", () => {
+    seedValue.textContent = seedSlider.value;
+    updateLineArt();
+  });
 });
 
 document.getElementById("downloadButton").addEventListener("click", function () {
