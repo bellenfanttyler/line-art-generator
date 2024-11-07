@@ -179,6 +179,35 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollableSettings = document.querySelector(".scrollable-settings");
+  const scrollWrapper = document.querySelector(".scrollable-settings-wrapper");
+
+  scrollableSettings.addEventListener("scroll", () => {
+    if (scrollableSettings.scrollHeight > scrollableSettings.clientHeight) {
+      scrollWrapper.classList.add("scrolled");
+    } else {
+      scrollWrapper.classList.remove("scrolled");
+    }
+  });
+});
+
+
+// JavaScript to show scroll shadow on the settings section
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollableSettings = document.querySelector(".scrollable-settings");
+  const scrollWrapper = document.querySelector(".scrollable-settings-wrapper");
+
+  scrollableSettings.addEventListener("scroll", () => {
+    if (scrollableSettings.scrollHeight > scrollableSettings.clientHeight) {
+      scrollWrapper.classList.add("scrolled");
+    } else {
+      scrollWrapper.classList.remove("scrolled");
+    }
+  });
+});
+
+
 document.getElementById("downloadButton").addEventListener("click", function () {
   const canvas = document.getElementById("resultCanvas");
   const link = document.createElement("a");

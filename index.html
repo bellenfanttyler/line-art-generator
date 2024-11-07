@@ -36,56 +36,67 @@
 
       <!-- Controls for Line Art Parameters (Right Side) -->
       <div class="col-md-5">
-        <div class="upload-section mb-4 p-4">
-          <p class="mb-3">Upload a base image to create a line art representation.</p>
-          <input type="file" class="form-control btn-upload" id="imageLoader" accept="image/*">
-          <small class="form-text text-muted">Supported formats: JPG, PNG.</small>
-        </div>
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <!-- Scrollable Settings Wrapper with visual cue -->
+            <div class="scrollable-settings-wrapper">
+              <div class="scrollable-settings">
+                <!-- Upload Section -->
+                <div class="upload-section mb-4 p-4">
+                  <input type="file" class="form-control btn-upload" id="imageLoader" accept="image/*">
+                  <small class="form-text text-muted">Upload a base image: JPG, PNG.</small>
+                </div>
+                <!-- Line Art Settings -->
+                <div class="mb-3">
+                  <label for="spacingSlider" class="form-label">Line Spacing: <span id="spacingValue">5</span></label>
+                  <input type="range" class="form-range" min="1" max="20" value="5" id="spacingSlider">
+                </div>
+                <div class="mb-3">
+                  <label for="seedSlider" class="form-label">Line Offset: <span id="seedValue">0</span></label>
+                  <input type="range" class="form-range" min="0" max="5" value="0" id="seedSlider">
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="noBarsCheckbox">
+                    <label class="form-check-label" for="noBarsCheckbox">Hide Thin Lines</label>
+                  </div>
+                </div>
+                <div id="barThicknessSliderContainer" class="mb-3" style="display: none;">
+                  <label for="barThicknessSlider" class="form-label">Minimum Line Thickness: <span id="barThicknessValue">1</span></label>
+                  <input type="range" class="form-range" min="1" max="10" value="1" id="barThicknessSlider">
+                </div>
+                <div class="mb-3">
+                  <label for="orientationSelect" class="form-label">Line Orientation:</label>
+                  <select class="form-select" id="orientationSelect">
+                    <option value="vertical" selected>Vertical</option>
+                    <option value="horizontal">Horizontal</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="fillColorSelect" class="form-label">Line Color:</label>
+                  <select class="form-select" id="fillColorSelect">
+                    <option value="black" selected>Black</option>
+                    <option value="white">White</option>
+                  </select>
+                </div>
+              </div> <!-- End of scrollable-settings -->
+            </div> <!-- End of scrollable-settings-wrapper -->
 
-        <div>
-          <h3>Line Art Settings</h3>
-          <div class="mb-3">
-            <label for="spacingSlider" class="form-label">Line Spacing: <span id="spacingValue">5</span></label>
-            <input type="range" class="form-range" min="1" max="20" value="5" id="spacingSlider" style="accent-color: #1C60A7;">
-          </div>
-          <div class="mb-3">
-            <label for="seedSlider" class="form-label">Seed Offset: <span id="seedValue">0</span></label>
-            <input type="range" class="form-range" min="0" max="5" value="0" id="seedSlider">
-          </div>
-          <div class="mb-3">
-            <label for="orientationSelect" class="form-label">Line Orientation:</label>
-            <select class="form-select" id="orientationSelect">
-              <option value="vertical" selected>Vertical</option>
-              <option value="horizontal">Horizontal</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="fillColorSelect" class="form-label">Fill Color:</label>
-            <select class="form-select" id="fillColorSelect">
-              <option value="black" selected>Black</option>
-              <option value="white">White</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="noBarsCheckbox">
-              <label class="form-check-label" for="noBarsCheckbox">Hide Thin Lines</label>
+            <!-- Button Section Below Scrollable Settings -->
+            <div class="button-section text-center">
+              <button id="downloadButton" class="btn btn-primary">Download Line Art</button>
+              <div class="bmc-button-wrapper">
+                <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
+                        data-name="bmc-button" data-slug="tylerbellenfant" data-color="#FFDD00" data-emoji="" 
+                        data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" 
+                        data-font-color="#000000" data-coffee-color="#ffffff"></script>
+              </div>
             </div>
-            <div id="barThicknessSliderContainer" class="mb-3" style="display: none;">
-              <label for="barThicknessSlider" class="form-label">Minimum Line Thickness: <span id="barThicknessValue">1</span></label>
-              <input type="range" class="form-range" min="1" max="10" value="1" id="barThicknessSlider">
-            </div>            
-            <div class="mb-3 text-center">
-              <button id="downloadButton" class="btn btn-primary">Download Line Art as PNG</button>
-            </div>
-            <div class="mb-3 text-center">
-              <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="tylerbellenfant" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div> <!-- End of card-body -->
+        </div> <!-- End of card -->
+      </div> <!-- End of controls column -->
+    </div> <!-- End of row -->
+  </div> <!-- End of container -->
 
   <!-- Bootstrap JS (optional, for additional Bootstrap functionality) -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -107,6 +118,20 @@
         resultCanvas.classList.add("active");
         originalCanvas.classList.remove("active");
       }
+    });
+
+    // JavaScript to show scroll shadow on the settings section
+    document.addEventListener("DOMContentLoaded", function () {
+      const scrollableSettings = document.querySelector(".scrollable-settings");
+      const scrollWrapper = document.querySelector(".scrollable-settings-wrapper");
+
+      scrollableSettings.addEventListener("scroll", () => {
+        if (scrollableSettings.scrollHeight > scrollableSettings.clientHeight) {
+          scrollWrapper.classList.add("scrolled");
+        } else {
+          scrollWrapper.classList.remove("scrolled");
+        }
+      });
     });
   </script>
 </body>

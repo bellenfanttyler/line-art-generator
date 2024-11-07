@@ -109,6 +109,33 @@ h1, h3 {
   text-align: center;
 }
 
+/* Scrollable settings with visible scrollbar */
+.scrollable-settings-wrapper {
+  position: relative;
+  max-height: 60vh;
+  overflow-y: hidden; /* Hide native scrollbar overflow */
+}
+
+.scrollable-settings {
+  max-height: 60vh; /* Limit height for scrolling */
+  overflow-y: scroll; /* Ensure scrollbar is always visible */
+  padding-right: 10px; /* Padding to avoid content overlap with scrollbar */
+}
+
+/* Customize scrollbar appearance for Webkit browsers (Chrome, Safari) */
+.scrollable-settings::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.scrollable-settings::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Color of the scrollbar handle */
+  border-radius: 4px;
+}
+
+.scrollable-settings::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
 /* Updated Line Spacing Slider for Better Visibility */
 #spacingSlider {
   accent-color: #1C60A7;
@@ -137,25 +164,25 @@ h1, h3 {
 #downloadButton {
   background-color: #1C60A7;
   color: white;
-  border: none;
+  border: 2px solid #000000; /* Black border */
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  margin-top: 20px; /* Adjust this value as needed */
+  margin-top: 10px;
+  width: 100%;
+  max-width: 200px;
 }
 
 #downloadButton:hover {
   background-color: #144B85;
+  border-color: #000000; /* Keep the black border on hover */
 }
 
-#barThicknessSliderContainer {
-  margin-top: 15px;
-}
 
 #barThicknessSlider {
   accent-color: #1C60A7;
-  height: 8px; /* Adjust thickness for visibility */
+  height: 8px;
   border-radius: 5px;
   background: #E1E8ED;
   padding: 5px;
@@ -168,11 +195,6 @@ h1, h3 {
   background: #1C60A7;
   border-radius: 50%;
   cursor: pointer;
-}
-
-#barThicknessValue {
-  font-weight: 600;
-  color: #0F3A66;
 }
 
 #seedSlider {
@@ -192,7 +214,21 @@ h1, h3 {
   cursor: pointer;
 }
 
-#seedValue {
+#seedValue, #barThicknessValue {
   font-weight: 600;
   color: #0F3A66;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Space between buttons */
+}
+
+.bmc-button-wrapper {
+  display: inline-block;
+  width: 100%;
+  max-width: 200px; /* Consistent width with download button */
+  text-align: center;
 }
